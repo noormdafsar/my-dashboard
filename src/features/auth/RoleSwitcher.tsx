@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { setRole } from './authSlice';
+import { setRole, type Role } from './authSlice';
 
 const RoleSwitcher = () => {
   const dispatch = useAppDispatch();
@@ -8,7 +8,7 @@ const RoleSwitcher = () => {
   return (
     <select
       value={role}
-      onChange={(e) => dispatch(setRole(e.target.value))}
+      onChange={(e) => dispatch(setRole(e.target.value as Role))}
       className="border p-2 rounded"
     >
       <option value="viewer">Viewer</option>

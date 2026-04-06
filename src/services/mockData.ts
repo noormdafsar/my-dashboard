@@ -1,4 +1,10 @@
-export const transactions = [
+export const transactions: {
+  id: string;
+  date: string;
+  amount: number;
+  category: string;
+  type: 'income' | 'expense';
+}[] = [
   {
     id: '1',
     date: '2026-04-01',

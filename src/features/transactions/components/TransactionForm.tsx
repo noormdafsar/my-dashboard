@@ -30,44 +30,46 @@ const TransactionForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-4 rounded shadow mb-4 flex gap-4"
+      className="grid gap-4 rounded-3xl bg-[color:var(--surface)] p-6 shadow-xl ring-1 ring-[color:var(--ring)]"
     >
-      <input
-        type="number"
-        placeholder="Amount"
-        value={form.amount}
-        onChange={(e) =>
-          setForm({ ...form, amount: e.target.value })
-        }
-        className="border p-2 rounded"
-        required
-      />
+      <div className="grid gap-4 md:grid-cols-4">
+        <input
+          type="number"
+          placeholder="Amount"
+          value={form.amount}
+          onChange={(e) => setForm({ ...form, amount: e.target.value })}
+          className="rounded-2xl border border-[color:var(--card-border)] bg-[color:var(--surface-alt)] p-3 text-[color:var(--text)] outline-none focus:border-[color:var(--ring)]"
+          required
+        />
 
-      <input
-        type="text"
-        placeholder="Category"
-        value={form.category}
-        onChange={(e) =>
-          setForm({ ...form, category: e.target.value })
-        }
-        className="border p-2 rounded"
-        required
-      />
+        <input
+          type="text"
+          placeholder="Category"
+          value={form.category}
+          onChange={(e) => setForm({ ...form, category: e.target.value })}
+          className="rounded-2xl border border-[color:var(--card-border)] bg-[color:var(--surface-alt)] p-3 text-[color:var(--text)] outline-none focus:border-[color:var(--ring)]"
+          required
+        />
 
-      <select
-        value={form.type}
-        onChange={(e) =>
-          setForm({ ...form, type: e.target.value })
-        }
-        className="border p-2 rounded"
-      >
-        <option value="expense">Expense</option>
-        <option value="income">Income</option>
-      </select>
+        <select
+          value={form.type}
+          onChange={(e) => setForm({ ...form, type: e.target.value })}
+          className="rounded-2xl border border-[color:var(--card-border)] bg-[color:var(--surface-alt)] p-3 text-[color:var(--text)] outline-none focus:border-[color:var(--ring)]"
+        >
+          <option value="expense">Expense</option>
+          <option value="income">Income</option>
+        </select>
 
-      <button className="bg-blue-500 text-white px-4 rounded">
-        Add
-      </button>
+        <button
+          type="submit"
+          className="rounded-2xl bg-emerald-500 px-5 py-3 font-semibold text-slate-950 transition hover:bg-emerald-400"
+        >
+          Add transaction
+        </button>
+      </div>
+      <p className="text-sm text-[color:var(--muted)]">
+        New transactions are immediately added to the list above.
+      </p>
     </form>
   );
 };

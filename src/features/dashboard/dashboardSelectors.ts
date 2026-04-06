@@ -1,4 +1,4 @@
-import { RootState } from '../../app/store';
+import type { RootState } from '../../app/store';
 
 export const selectTransactions = (state: RootState) =>
   state.transactions.list;
@@ -35,5 +35,23 @@ export const selectChartData = (state: RootState) => {
   return Object.keys(map).map((date) => ({
     date,
     amount: map[date],
+  }));
+};
+
+export const selectCategoryData = (state: RootState) => {
+  const transactions = state.transactions.list;
+
+  const map: Record<string, number> = {};
+
+  transactions.forEach((tx) => {
+    if (tx.type === 'expense') {
+      if (!map[tx.category]) map[tx.category] = 0;
+      map[tx.category] += tx.amount;
+    }
+  });
+
+  return Object.keys(map).map((category) => ({
+    name: category,
+    value: map[category],
   }));
 };

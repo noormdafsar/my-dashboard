@@ -5,9 +5,9 @@ type Props = {
 
 const InsightsCard = ({ title, value }: Props) => {
   return (
-    <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
-      <h3 className="text-gray-500 dark:text-gray-400 text-sm">{title}</h3>
-      <p className="text-xl font-bold mt-2">{value}</p>
+    <div className="rounded-3xl bg-[color:var(--surface)] p-6 shadow-xl ring-1 ring-[color:var(--ring)]">
+      <p className="text-sm uppercase tracking-[0.3em] text-[color:var(--muted)]">{title}</p>
+      <p className="mt-4 text-3xl font-semibold text-[color:var(--text)]">{value}</p>
     </div>
   );
 };

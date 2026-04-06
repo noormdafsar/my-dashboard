@@ -3,38 +3,48 @@ type Props = {
 };
 
 const TransactionTable = ({ data }: Props) => {
-  // ✅ EMPTY STATE CHECK (place here)
   if (!data.length) {
     return (
-      <div className="bg-white p-6 text-center rounded shadow">
-        <p className="text-gray-500">No transactions found</p>
+      <div className="rounded-3xl bg-[color:var(--surface)] p-8 text-center shadow-xl ring-1 ring-[color:var(--ring)]">
+        <p className="text-[color:var(--muted)]">No transactions found. Try updating the search or filter.</p>
       </div>
     );
   }
 
-  // ✅ Normal table render
   return (
-    <table className="w-full bg-white dark:bg-gray-800 shadow rounded">
-      <thead>
-        <tr className="text-left dark:text-gray-400 text-gray-500 border-b">
-          <th className="p-3">Date</th>
-          <th className="p-3">Amount</th>
-          <th className="p-3">Category</th>
-          <th className="p-3">Type</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {data.map((tx) => (
-          <tr key={tx.id} className="border-b dark:border-gray-700">
-            <td className="p-3">{tx.date}</td>
-            <td className="p-3">{tx.amount}</td>
-            <td className="p-3">{tx.category}</td>
-            <td className="p-3">{tx.type}</td>
+    <div className="overflow-hidden rounded-3xl bg-[color:var(--surface)] shadow-xl ring-1 ring-[color:var(--ring)]">
+      <table className="min-w-full border-separate border-spacing-0 text-left text-sm">
+        <thead className="bg-[color:var(--surface-alt)] text-[color:var(--muted)]">
+          <tr>
+            <th className="p-4">Date</th>
+            <th className="p-4">Amount</th>
+            <th className="p-4">Category</th>
+            <th className="p-4">Type</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody>
+          {data.map((tx) => (
+            <tr key={tx.id} className="border-b border-[color:var(--card-border)] last:border-none hover:bg-[color:var(--surface-alt)]">
+              <td className="p-4 text-[color:var(--text)]">{tx.date}</td>
+              <td className="p-4 text-[color:var(--text)]">₹ {tx.amount.toLocaleString('en-IN')}</td>
+              <td className="p-4 text-[color:var(--text)]">{tx.category}</td>
+              <td className="p-4">
+                <span
+                  className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+                    tx.type === 'income'
+                      ? 'bg-emerald-500/20 text-emerald-700 dark:text-emerald-200'
+                      : 'bg-rose-500/20 text-rose-700 dark:text-rose-200'
+                  }`}
+                >
+                  {tx.type}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

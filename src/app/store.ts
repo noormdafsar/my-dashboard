@@ -1,17 +1,8 @@
-const loadState = () => {
-  try {
-    const data = localStorage.getItem('appState');
-    return data ? JSON.parse(data) : undefined;
-  } catch {
-    return undefined;
-  }
-};
-
-const saveState = (state: any) => {
-  try {
-    localStorage.setItem('appState', JSON.stringify(state));
-  } catch {}
-};
+import { configureStore } from '@reduxjs/toolkit';
+import { authReducer } from '../features/auth/authSlice';
+import { transactionsReducer } from '../features/transactions/transactionsSlice';
+import { dashboardReducer } from '../features/dashboard/dashboardSlice';
+import { insightsReducer } from '../features/insights/insightsSlice';
 
 export const store = configureStore({
   reducer: {
@@ -20,12 +11,7 @@ export const store = configureStore({
     dashboard: dashboardReducer,
     insights: insightsReducer,
   },
-  preloadedState: loadState(),
 });
 
-store.subscribe(() => {
-  saveState({
-    transactions: store.getState().transactions,
-    auth: store.getState().auth,
-  });
-});
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
