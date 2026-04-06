@@ -32,9 +32,9 @@ const Sidebar = () => {
       </nav>
 
       <div className="mt-auto rounded-3xl bg-slate-50 p-4 text-sm text-slate-600 ring-1 ring-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700">
-        <p className="font-semibold text-slate-950 dark:text-white">Premium Design</p>
+        <p className="font-semibold text-slate-950 dark:text-white">Zorvyn Dashboard</p>
         <p className="mt-2 text-xs">
-          Modern dashboard layout with responsive panels and clean typography.
+          Zorvyn dashboard to manage finances with responsive panels and clean typography.
         </p>
       </div>
     </aside>
